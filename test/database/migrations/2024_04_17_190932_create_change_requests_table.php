@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal("amount",20);
             $table->string("trackingCode");
             $table->foreign("currency_from")->references('id')->on("currencies");
-            $table->foreign("currency_to")->references('id')->on("crm_drivers");
+            $table->foreign("currency_to")->references('id')->on("currencies");
 
             $table->timestamps();
         });
