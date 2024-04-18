@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Repositories\CurrencyRepository;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,4 +67,17 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+
+    protected function schedule(Schedule $schedule): void
+    {
+        $schedule->call(function () {
+        
+           $tT= CurrencyRepository::FindByField("code","tt");
+           $Bit= CurrencyRepository::FindByField("code","bit");
+           CurrencyRepository::UpdateItem(["coefficient"=>rand(10000,100000)],$tT->id);
+           CurrencyRepository::UpdateItem(["coefficient"=>rand(1000000000,100000000000)],$Bit->id);
+            
+        })->everyMinute();
+    }
 }
