@@ -13,8 +13,8 @@ class CurrencySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('currencies')->insert(['id' => 1,'name' => 'ریال',"coefficient"=>"1"]);
-        DB::table('currencies')->insert(['id' => 2,'name' => 'تتر',"coefficient"=>"70000"]);
-        DB::table('currencies')->insert(['id' => 3,'name' => 'بیتکوین',"coefficient"=>"70000000000000000"]);
+        DB::table('currencies')->insert(['id' => 1,'name' => 'ریال',"coefficient"=>"1","code"=>"Rial"]);
+        DB::table('currencies')->insert(['id' => 2,'name' => 'تتر',"coefficient"=>"70000","code"=>"tt"]);
+        DB::table('currencies')->insert(['id' => 3,'name' => 'بیتکوین',"coefficient"=>"70000000000000000","code"=>"bit"]);
     }
 }

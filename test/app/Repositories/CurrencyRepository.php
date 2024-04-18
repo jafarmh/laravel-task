@@ -4,17 +4,21 @@ namespace App\Repositories;
 
 
 use App\Interfaces\RepositoryInterface;
-use App\Models\ChangeRequest;
+use App\Models\Currency;
 
-
-class ChangeRequestRepository implements RepositoryInterface
+class CurrencyRepository implements RepositoryInterface
 {
     private function query(): \Illuminate\Database\Eloquent\Builder
     {
-        $query=ChangeRequest::query();
+        $query=Currency::query();
         return $query;
     }
 
+    public static function FindByField($field, $value)
+    {
+        return (new self)->query()->where($field, $value)->first();
+    }
+ 
     public static function GetByField($field, $value)
     {
         return (new self)->query()->where($field, $value)->get();
@@ -27,7 +31,7 @@ class ChangeRequestRepository implements RepositoryInterface
 
     static function NewItem($data): \Illuminate\Database\Eloquent\Model
     {
-        return  ChangeRequest::create($data);
+        return  Currency::create($data);
     }
     static function UpdateItem($data, $id): int
     {
@@ -37,8 +41,7 @@ class ChangeRequestRepository implements RepositoryInterface
         }
         return $record->save();
     }
- 
-
+  
     static function Remove($id)
     {
         $record = (new self )->FindById($id);
