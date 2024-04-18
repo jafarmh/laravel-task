@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string("email");
             $table->decimal("amount",20);
             $table->string("trackingCode");
-            $table->foreign("currency_from")->references('id')->on("currencies");
-            $table->foreign("currency_to")->references('id')->on("currencies");
+            $table->foreignId('currency_from')->nullable()->constrained('currencies');
+            $table->foreignId('currency_to')->nullable()->constrained('currencies');
 
             $table->timestamps();
         });
